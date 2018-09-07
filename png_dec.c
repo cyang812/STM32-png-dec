@@ -27,8 +27,11 @@ void raw_data_convert(uint8_t *in_buffer, uint32_t width, uint32_t height, uint8
 
 	uint32_t depth = 3;
 
-	for (uint32_t y = 0; y != height; ++y) 
-	{
+#ifndef UPNG_FLIP_Y
+	for (y = 0; y != height; ++y)
+#else	
+	for (y = height-1; y >= 0; --y)
+#endif	
 		for (uint32_t x = 0; x != width; ++x) 
 		{
 			out_buffer[color_idx++] = in_buffer[(height - y - 1) * width * depth + x * depth + (depth - 0 - 1)];
