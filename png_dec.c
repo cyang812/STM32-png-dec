@@ -10,6 +10,8 @@
 
 #define PNG_PATH "0:/p%d.png"
 
+#define UPNG_FLIP_Y //竖直翻转
+
 /*
  * flip the image
  * Set to flip the image data along the horizontal axis and vertical axis
