@@ -1,7 +1,7 @@
 # STM32 PNG DECODER
 
 ## 项目说明
-- 解码器为 [uPNG](https://github.com/elanthis/upng)
+- 解码器为 [uPNG](https://github.com/cyang812/upng)
 - 测试平台：STM32F469NIH6
 - 测试环境：IAR 7.80.4
 
