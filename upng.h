@@ -36,8 +36,16 @@ typedef enum upng_error {
 	UPNG_EUNSUPPORTED	= 5, /* critical PNG chunk type is not supported */
 	UPNG_EUNINTERLACED	= 6, /* image interlacing is not supported */
 	UPNG_EUNFORMAT		= 7, /* image color format is not supported */
-	UPNG_EPARAM			= 8  /* invalid parameter to method call */
+	UPNG_EPARAM			= 8, /* invalid parameter to method call */
 } upng_error;
+
+typedef enum upng_state {
+	UPNG_ERROR		= -1,
+	UPNG_DECODED	= 0,
+	UPNG_DECODING	= 1,
+	UPNG_HEADER		= 2,
+	UPNG_NEW		= 3
+} upng_state;
 
 typedef enum upng_format {
 	UPNG_BADFORMAT,
@@ -64,7 +72,9 @@ void		upng_free			(upng_t* upng);
 upng_error	upng_header			(upng_t* upng);
 upng_error	upng_decode			(upng_t* upng);
 upng_error  upng_decode_to_buffer(upng_t* upng, unsigned char* buffer, unsigned long buffer_size);
+upng_error  upng_decode_to_buffer_fsm(upng_t* upng, unsigned char* buffer, unsigned long buffer_size);
 
+upng_state	upng_get_state		(const upng_t* upng);
 
 upng_error	upng_get_error		(const upng_t* upng);
 unsigned	upng_get_error_line	(const upng_t* upng);
